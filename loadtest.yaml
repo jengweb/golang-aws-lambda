@@ -1,0 +1,12 @@
+config:
+  target: https://nh1p94123f.execute-api.ap-southeast-1.amazonaws.com
+  phases:
+    - duration: 30
+      arrivalRate: 20
+  ensure:
+    p95: 400
+scenarios:
+  - flow:
+      - get:
+          url: "/Prod/hello-main"
+          followRedirect: false
