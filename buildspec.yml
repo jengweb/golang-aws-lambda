@@ -2,13 +2,13 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      golang: 1.15
+      golang: 1.13
   build:
     commands:
       - sam build
-      - sam package --s3-bucket lambda-golang-artifacts --output-template-file outputtemplate.yml
+      - sam package --s3-bucket lambda-golang-artifacts --output-template-file outputtemplate.yaml
 artifacts:
   type: zip
   files:
-    - template.yml
-    - outputtemplate.yml
+    - template.yaml
+    - outputtemplate.yaml
