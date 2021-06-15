@@ -21,33 +21,32 @@ type deps struct {
 }
 
 type Order struct {
-	ID   string `dynamodbav: "id"`
+	ID   string `dynamodbav:"id"`
 	Date time.Time
 }
 
 func (d *deps) handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	if d.ddb == nil {
 		sessions := session.Must(session.NewSession())
-		ddb := dynamodb.New(sessions)
 
-		d.ddb = ddb
+		d.ddb = dynamodb.New(sessions)
 		d.table = "Orders"
 	}
 
-	k, err := ksuid.NewRandom()
+	orderID, err := ksuid.NewRandom()
 	if err != nil {
 		fmt.Printf("Error generating KSUID: %v\n", err)
 		return events.APIGatewayProxyResponse{}, err
 	}
 
-	var o Order
-	o.ID = k.String()
-	o.Date = time.Now()
+	var orders Order
+	orders.ID = orderID.String()
+	orders.Date = time.Now()
 
-	item, err := dynamodbattribute.MarshalMap(o)
+	item, err := dynamodbattribute.MarshalMap(orders)
 	if err != nil {
 		fmt.Println("Could not call dynamodbattribute.MarshalMap(c)")
-		fmt.Println(o)
+		fmt.Println(orders)
 		return events.APIGatewayProxyResponse{}, err
 	}
 

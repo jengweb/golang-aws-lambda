@@ -25,12 +25,12 @@ func TestHandler(t *testing.T) {
 
 		d := deps{
 			ddb:   m,
-			table: "test_table",
+			table: "Test_Table",
 		}
 
 		_, err := d.handler(events.APIGatewayProxyRequest{})
 		if err != nil {
-			t.Fatalf("Everythink should be ok")
+			t.Fatal("Everything should be OK")
 		}
 	})
 }

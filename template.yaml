@@ -1,9 +1,9 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  lambda-go
-  
-  Sample SAM Template for lambda-go
+  Lambda-Golang
+
+  Sample SAM Template for Lambda-Golang
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -27,7 +27,7 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref MyTable
-  
+
   HelloHandlerFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
