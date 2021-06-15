@@ -69,7 +69,7 @@ func main() {
 
 	d := deps{
 		ddb:   dynamodb.New(sess),
-		table: "HelloGolang",
+		table: "Orders",
 	}
 
 	lambda.Start(d.handler)
